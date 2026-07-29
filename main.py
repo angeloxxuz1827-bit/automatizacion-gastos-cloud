@@ -1,21 +1,21 @@
 import json
 
 from ingestion.telegram.service import TelegramService
+from core.application import Aplication 
+
 
 
 def main():
 
     telegram = TelegramService()
+    app = Aplication()
 
-    updates = telegram.get_updates()
+    responses = telegram.get_updates()
 
-    for update in updates["result"]:
-        chat_id = update["message"]["chat"]["id"]
+    for response in responses["result"]:
 
-        text = "Enviando mensaje desde python"
-        telegram.send_message(chat_id, text)
-
-    print(json.dumps(updates, indent=4, ensure_ascii=False))
+        app.run(response)
+    
 
 
 
