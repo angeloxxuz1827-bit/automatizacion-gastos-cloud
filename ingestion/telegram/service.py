@@ -4,6 +4,7 @@ from ingestion.telegram.client import TelegramClient
 
 class TelegramService:
 
+
     def __init__(self):
         self.client = TelegramClient()
        

@@ -7,7 +7,7 @@ class Aplication:
     def run(self,response:dict):
 
         chat_id = response["message"]["chat"]["id"]
-        text = "Enviando mensaje desde algun lugar"
+        text = "Chat ID"
 
         self.telegram_service.send_message(chat_id, text)
 
