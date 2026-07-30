@@ -6,6 +6,7 @@ from config.settings import TELEGRAM_TOKEN, TELEGRAM_API_URL
 class TelegramClient:
 
     def __init__(self):
+        print(f"TELEGRAM_TOKEN: {TELEGRAM_TOKEN}")
         self.base_url = f"{TELEGRAM_API_URL}/bot{TELEGRAM_TOKEN}"
 
     def get_updates(self, offset: int | None = None) -> dict:
@@ -39,6 +40,23 @@ class TelegramClient:
             url = f"{self.base_url}/sendMessage",
             json=payload,
             timeout=30 + 5
+        )
+
+        response.raise_for_status()
+
+        return response.json()
+    
+
+    def get_updates_update_id(self, update_id: int) -> dict:
+        params = {
+            "timeout": 30,
+            "offset": update_id + 1
+        }
+
+        response = requests.get(
+            f"{self.base_url}/getUpdates",
+            params=params,
+    
         )
 
         response.raise_for_status()
