@@ -1,7 +1,9 @@
 import json
 from pydoc import text
 from urllib import response
+
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from ingestion.telegram.service import TelegramService
 from llm.llm_service import LLM
@@ -23,11 +25,18 @@ class Aplication:
 
         chat_id = response["message"]["chat"]["id"]
         text = response['message']['text']
-        date = datetime.fromtimestamp(response['message']['date']).strftime('%Y-%m-%d %H:%M:%S')
+
+        
+        timestamp = response["message"]["date"]
+
+        date = datetime.fromtimestamp(
+            timestamp,
+            tz=ZoneInfo("America/Bogota")
+        ).strftime("%Y-%m-%d %H:%M:%S")
 
         #Construir el prompt para enviar a la API de GroqCloud
         system_prompt =f"Fecha: {date} \n Mensaje: {text}"
-        
+        print (f"response: {json.dumps(response, indent=4, ensure_ascii=False)}")
         print (f"System Prompt: {system_prompt}")
         
         responseLLM = self.llm_service.call_service(system_prompt)

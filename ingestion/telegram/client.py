@@ -6,7 +6,7 @@ from config.settings import TELEGRAM_TOKEN, TELEGRAM_API_URL
 class TelegramClient:
 
     def __init__(self):
-        print(f"TELEGRAM_TOKEN: {TELEGRAM_TOKEN}")
+    
         self.base_url = f"{TELEGRAM_API_URL}/bot{TELEGRAM_TOKEN}"
 
     def get_updates(self, offset: int | None = None) -> dict:
