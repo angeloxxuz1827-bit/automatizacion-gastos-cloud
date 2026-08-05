@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-class TelegramUser:
+class Client:
     """
     Represents a Telegram user interacting with the application.
 
