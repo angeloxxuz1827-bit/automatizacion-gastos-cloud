@@ -3,7 +3,7 @@ import json
 from ingestion.telegram.service import TelegramService
 from core.application import Aplication 
 
-from s3.PutObject import save_json_s3
+from aws.s3.put_object_read_json import save_json_s3
 
 def main():
 

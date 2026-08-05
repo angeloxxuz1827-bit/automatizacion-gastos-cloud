@@ -46,6 +46,12 @@ class Aplication:
         print(f"Response LLM: {json.dumps(responseLLM, indent=4, ensure_ascii=False)}")
 
         text =responseLLM["choices"][0]["message"]["content"]
+        
+        text_json = json.loads(text)
+        estado = text_json.get("Estado")
+        print (f"Estado: {estado}")
+
+        
 
         self.telegram_service.send_message(chat_id, text)
 
