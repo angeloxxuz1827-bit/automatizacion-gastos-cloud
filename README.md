@@ -7,14 +7,14 @@
 
 ---
 
-## 📋 Overview
+##  Overview
 
 **Expense Tracker Bot** is a serverless application that automates personal expense tracking by converting natural language Telegram messages into structured expense records stored in a MySQL database.
 
 Simply send a message in natural language:
 
 ```
-"Compré dos kilos de carne en Mercaldas por 15000 con tarjeta de crédito"
+"Compré dos kilos de carne en Olímpica por 15000 con tarjeta de crédito"
 ```
 
 The system automatically extracts the information, structures it into JSON, and stores it in your database:
@@ -38,22 +38,22 @@ No manual data entry. No spreadsheets. Just send a message and forget about it.
 
 ---
 
-## 🎯 Key Features
+##  Key Features
 
-- **📱 Telegram Integration** - Send expenses directly through Telegram messages
-- **🤖 AI-Powered Extraction** - Uses Groq LLM (Llama 70B) to understand natural language
-- **☁️ Fully Serverless** - No servers to manage, auto-scaling out of the box
-- **💾 Structured Storage** - Expenses organized in MySQL with clear relationships
-- **⚡ Event-Driven** - Automatic processing through AWS Lambda & S3 events
-- **🔒 Secure** - All data encrypted in transit and at rest
-- **📊 Intelligent Categorization** - Automatic category and subcategory assignment
-- **✅ State Management** - Tracks completion status of expense records
-- **🌍 Multi-Currency Support** - Currently supports COP (Colombian Peso)
-- **📍 Location Tracking** - Captures where purchases were made
+- ** Telegram Integration** - Send expenses directly through Telegram messages
+- ** AI-Powered Extraction** - Uses Groq LLM (Llama 70B) to understand natural language
+- **️ Fully Serverless** - No servers to manage, auto-scaling out of the box
+- ** Structured Storage** - Expenses organized in MySQL with clear relationships
+- ** Event-Driven** - Automatic processing through AWS Lambda & S3 events
+- ** Secure** - All data encrypted in transit and at rest
+- ** Intelligent Categorization** - Automatic category and subcategory assignment
+- ** State Management** - Tracks completion status of expense records
+- ** Multi-Currency Support** - Currently supports COP (Colombian Peso)
+- ** Location Tracking** - Captures where purchases were made
 
 ---
 
-## 🏗️ Architecture Overview
+## ️ Architecture Overview
 
 The system follows an **event-driven serverless architecture** with three Lambda functions coordinating through S3 and a message queue pattern.
 
@@ -119,7 +119,7 @@ The system follows an **event-driven serverless architecture** with three Lambda
 
 ---
 
-## 🛠️ Tech Stack
+## ️ Tech Stack
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
@@ -134,7 +134,7 @@ The system follows an **event-driven serverless architecture** with three Lambda
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -229,7 +229,7 @@ You should receive a confirmation message with the extracted expense data within
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 expense-tracker-bot/
@@ -330,7 +330,7 @@ expense-tracker-bot/
 
 ---
 
-## 💡 How It Works
+##  How It Works
 
 ### Step-by-Step Example
 
@@ -350,7 +350,7 @@ expense-tracker-bot/
 - Sends to Groq LLM with detailed extraction instructions
 - Receives structured JSON with expense details
 - Stores response in S3: `s3://bucket/processed/2026/10/07/20261007_104837_update123.json`
-- Sends user confirmation via Telegram: `✅ Gasto registrado...`
+- Sends user confirmation via Telegram: ` Gasto registrado...`
 
 **4. S3 event triggers Lambda 3 (Persistence):**
 - Retrieves processed JSON from S3
@@ -373,7 +373,7 @@ WHERE mensaje_id = (
 
 ---
 
-## 📊 Data Models
+##  Data Models
 
 ### Expense (Gasto)
 
@@ -425,20 +425,20 @@ WHERE mensaje_id = (
 
 ---
 
-## 🔐 Security Considerations
+##  Security Considerations
 
-- ✅ All API credentials stored in AWS Secrets Manager
-- ✅ Database connections use IAM authentication
-- ✅ S3 buckets configured with encryption at rest (AES-256)
-- ✅ TLS/HTTPS for all external API calls
-- ✅ Lambda execution roles follow principle of least privilege
-- ✅ No secrets logged to CloudWatch
-- ✅ API Gateway enforces HTTPS
-- ✅ Database backups automated daily
+-  All API credentials stored in AWS Secrets Manager
+-  Database connections use IAM authentication
+-  S3 buckets configured with encryption at rest (AES-256)
+-  TLS/HTTPS for all external API calls
+-  Lambda execution roles follow principle of least privilege
+-  No secrets logged to CloudWatch
+-  API Gateway enforces HTTPS
+-  Database backups automated daily
 
 ---
 
-## 🐛 Common Issues & Solutions
+##  Common Issues & Solutions
 
 ### Telegram webhook not receiving messages
 → See [TROUBLESHOOTING.md](TROUBLESHOOTING.md#telegram-webhook-not-receiving-messages)
@@ -453,7 +453,7 @@ For more detailed troubleshooting, visit [TROUBLESHOOTING.md](TROUBLESHOOTING.md
 
 ---
 
-## 📈 Performance & Costs
+##  Performance & Costs
 
 ### Latency
 
@@ -479,7 +479,7 @@ For more detailed troubleshooting, visit [TROUBLESHOOTING.md](TROUBLESHOOTING.md
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
 
@@ -490,15 +490,15 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines 
 
 ### Ways to Contribute
 
-- 🐛 Report bugs
-- 💡 Suggest features
-- 📝 Improve documentation
-- ✅ Submit pull requests
-- 🧪 Add tests
+-  Report bugs
+-  Suggest features
+-  Improve documentation
+-  Submit pull requests
+-  Add tests
 
 ---
 
-## 📚 Documentation
+##  Documentation
 
 - [**ARCHITECTURE.md**](docs/ARCHITECTURE.md) - System design & data flow
 - [**INSTALLATION.md**](docs/INSTALLATION.md) - Setup & deployment
@@ -510,7 +510,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines 
 
 ---
 
-## 📞 Support
+##  Support
 
 ### Getting Help
 
@@ -527,7 +527,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines 
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -537,7 +537,7 @@ You are free to use this project for personal, educational, and commercial purpo
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - [Groq](https://groq.com/) - For the fast LLM API
 - [Telegram](https://telegram.org/) - For the messaging platform
@@ -546,9 +546,9 @@ You are free to use this project for personal, educational, and commercial purpo
 
 ---
 
-## 🗺️ Roadmap
+## ️ Roadmap
 
-### Phase 1: Core (Current) ✅
+### Phase 1: Core (Current) 
 - [x] Telegram bot integration
 - [x] Natural language expense extraction
 - [x] MySQL persistence
@@ -574,7 +574,7 @@ You are free to use this project for personal, educational, and commercial purpo
 
 ---
 
-## 📊 Project Stats
+##  Project Stats
 
 - **Total Lambda Invocations**: ~3,000 per month (1,000 expenses × 3 lambdas)
 - **Average Response Time**: 2 seconds
@@ -584,37 +584,37 @@ You are free to use this project for personal, educational, and commercial purpo
 
 ---
 
-## 🎓 Learning Resources
+##  Learning Resources
 
 This project demonstrates:
 
-- ✅ Serverless architecture patterns
-- ✅ Event-driven design (S3, Lambda)
-- ✅ Repository pattern & clean code
-- ✅ Python best practices
-- ✅ AWS Lambda, API Gateway, S3, RDS
-- ✅ Database transactions
-- ✅ Natural language processing integration
-- ✅ REST API design
-- ✅ Infrastructure as Code
-- ✅ Git workflow & open source practices
+-  Serverless architecture patterns
+-  Event-driven design (S3, Lambda)
+-  Repository pattern & clean code
+-  Python best practices
+-  AWS Lambda, API Gateway, S3, RDS
+-  Database transactions
+-  Natural language processing integration
+-  REST API design
+-  Infrastructure as Code
+-  Git workflow & open source practices
 
 Perfect for portfolio building as a **Backend Developer** or **Cloud Engineer**.
 
 ---
 
-## 🌟 Show Your Support
+##  Show Your Support
 
 If this project helped you, please consider:
 
 - ⭐ Giving it a star on GitHub
-- 🐛 Reporting issues & suggesting improvements
-- 💬 Sharing feedback & use cases
-- 🤝 Contributing improvements
-- 📢 Recommending it to others
+-  Reporting issues & suggesting improvements
+-  Sharing feedback & use cases
+-  Contributing improvements
+-  Recommending it to others
 
 ---
 
-**Made with ❤️ by [Your Name](https://github.com/yourusername)**
+**Made with ️ by [Your Name](https://github.com/yourusername)**
 
 Last updated: October 2026
