@@ -46,14 +46,14 @@ class ClientRepository:
                 (chat_id,)
             )
 
-            # Returns True if at least one record is found.
+            # Returns True if at least one matching record is found.
             return cursor.fetchone() is not None
 
         finally:
             # Ensure the cursor is always closed.
             cursor.close()
 
-    def save(self, client):
+    def save(self, client) -> None:
         """
         Inserts a new client into the database.
 

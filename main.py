@@ -3,7 +3,6 @@ import json
 from ingestion.telegram.service import TelegramService
 from core.application import Aplication 
 
-from aws.s3.put_object_read_json import save_json_s3
 
 def main():
 
@@ -14,15 +13,8 @@ def main():
 
     for response in responses["result"]:
 
-        # Guardar el JSON en S3
-        archivo =save_json_s3(response)
-        print(f"Archivo guardado en S3: {archivo}")
-
         app.run(response)
 
-
-
-    
 
 
 
