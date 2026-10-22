@@ -1,0 +1,8 @@
+# Dependencias de terceros para la Lambda Layer.
+# No incluye boto3: lo provee el runtime de Lambda.
+# No instalar dentro de python/: construir en build/layer/python
+#   pip install -r requirements-layer.txt -t build/layer/python
+requests
+tzdata
+# Solo para el código MySQL/RDS legado (`python/aws/rds/`). Store ya no lo usa.
+mysql-connector-python

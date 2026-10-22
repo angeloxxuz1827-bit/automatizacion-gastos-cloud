@@ -4,6 +4,7 @@ from core.application import Aplication
 from aws.s3.client import S3Client
 from aws.s3.events import get_bucket_and_key
 from aws.s3.key_builder import change_prefix
+from ingestion.telegram.client import TelegramAPIError
 from ingestion.telegram.service import TelegramService
 
 # Initialize application services.
@@ -64,7 +65,15 @@ def lambda_handler(event, context):
     message = app.build_expense_message(content_response_llm)
 
     # Send the confirmation message to the user via Telegram.
-    telegram.send_message(chat_id, message)
+    try:
+        telegram.send_message(chat_id, message)
+    except TelegramAPIError as exc:
+        print(f"Telegram send failed: {type(exc).__name__}: {exc}")
+        raise
+    except Exception as exc:
+        # Nunca loguear str(exc): una excepción cruda puede incluir la URL con token.
+        print(f"Telegram send failed: {type(exc).__name__}")
+        raise RuntimeError("Telegram send failed") from None
 
     # Return a successful HTTP response.
     return {
