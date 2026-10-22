@@ -1,1 +1,2 @@
-mysql
+# El store usa la Lambda Layer: `requests` ya está incluido.
+# No requiere dependencias propias.

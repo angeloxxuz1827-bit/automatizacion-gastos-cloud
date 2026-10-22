@@ -2,14 +2,14 @@
 
 Bot de Telegram que convierte mensajes en lenguaje natural (español) en gastos
 estructurados. El procesamiento usa Groq y el pipeline corre sobre AWS Lambda,
-API Gateway y S3; la persistencia objetivo es Supabase (Postgres).
+API Gateway y S3; la persistencia es Supabase (Postgres). RDS/MySQL queda como
+legado de referencia.
 
-> **Estado de esta revisión**
+> **Estado actual**
 >
-> Este commit consolida `python/` como código compartido de la Lambda Layer y
-> actualiza ingestion y processor. El store versionado todavía usa RDS en este
-> commit; su migración a Supabase se incorpora en el commit siguiente. Las
-> secciones marcadas como objetivo describen el estado final de esa migración.
+> `python/` es el código compartido de la Lambda Layer para las tres Lambdas. El
+> store persiste en Supabase mediante REST + RPC; RDS/MySQL se conserva solo
+> como referencia legado.
 
 ## Arquitectura
 
@@ -44,11 +44,10 @@ Supabase (Postgres)
    └── gastos
 ```
 
-En el estado final, cada Lambda contiene únicamente su entrypoint y, cuando
-aplica, su `core/` propio. El código compartido (`aws/`, `config/`, `database/`,
-`ingestion/`, `llm/`) vive una sola vez en `python/`, que es la raíz de la Lambda
-Layer. En este commit, ingestion y processor ya usan la capa; el store todavía
-conserva sus copias locales y se migra en el commit siguiente.
+Cada Lambda contiene únicamente su entrypoint y, cuando aplica, su `core/`
+propio. El código compartido (`aws/`, `config/`, `database/`, `ingestion/`,
+`llm/`) vive una sola vez en `python/`, que es la raíz de la Lambda Layer. Las
+tres Lambdas usan la capa; el store conserva solo su entrypoint y `core/`.
 
 ## Estructura del repositorio
 
@@ -186,16 +185,16 @@ Claves esperadas: `ChatId`, `MessageId`, `Fecha`, `Categoria`, `Subcategoria`,
 `Cantidad` y `Valor` son numéricos; `Unidad` va separada. El modelo configurado
 es `openai/gpt-oss-120b` (`python/llm/models.py`).
 
-## Persistencia objetivo (Supabase)
+## Persistencia (Supabase)
 
-La migración del store usa REST + RPC, no una conexión Postgres directa:
+El store usa REST + RPC, no una conexión Postgres directa:
 
 - `public.registrar_gasto(...)` inserta o actualiza cliente, mensaje y gasto en
   una sola transacción.
 - Las tablas `clientes`, `mensajes` y `gastos` tienen RLS activo y sin policies
   para escritura pública.
 - La RPC es `security definer`; solo `service_role` debe ejecutarla.
-- `supabase/schema.sql` queda como DDL de referencia de la migración.
+- `supabase/schema.sql` es el DDL vigente y sirve para recrear el esquema.
 
 La tabla `mensajes` conserva la columna histórica `s3_key_proccessed` con esa
 grafía.
@@ -215,7 +214,7 @@ grafía.
 
 - Despliegue manual; no hay infraestructura como código.
 - Sin tests automatizados, CI, linter ni typechecker.
-- El código del store y `supabase/schema.sql` se incorporan en el commit de
-  migración a Supabase.
+- `python/aws/rds/` y las variables `DB_*` permanecen como referencia del
+  legado; el pipeline no las usa.
 - La documentación local del agente (`AGENTS.md`, `especificaciones.md`,
   `memory.md`, `plan-desarrollo.md`) está ignorada por Git.
